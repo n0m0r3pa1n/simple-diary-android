@@ -35,12 +35,14 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
                 .observe(this, Observer {
                     notesAdapter.setNotes(it!!)
                 })
+
+        checkForNoteToday()
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        val disposable = diaryViewModel.saveNote("## Test \n\n How are you today? \n### Test2 \n Very good, thanks", Date())
+    private fun checkForNoteToday() {
+        val disposable = diaryViewModel.hasNotesForToday()
+                .filter({ !it })
+                .flatMapCompletable { diaryViewModel.saveNote(null, "New note", Date()) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()

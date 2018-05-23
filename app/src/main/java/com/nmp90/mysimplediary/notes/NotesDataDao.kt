@@ -12,6 +12,9 @@ interface NotesDataDao {
     @Query("SELECT * from notes")
     fun getAll(): Flowable<List<Note>>
 
+    @Query("SELECT COUNT(*) from notes WHERE date BETWEEN :start_time AND :end_time")
+    fun notesCount(start_time: Long, end_time: Long): Int
+
     @Insert(onConflict = REPLACE)
     fun insert(note: Note)
 

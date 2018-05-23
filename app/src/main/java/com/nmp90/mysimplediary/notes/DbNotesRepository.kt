@@ -3,6 +3,7 @@ package com.nmp90.mysimplediary.notes
 import android.content.Context
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import java.util.*
 
 class DbNotesRepository(context: Context) : NotesRepository {
@@ -13,18 +14,26 @@ class DbNotesRepository(context: Context) : NotesRepository {
     }
 
     override fun getNotes(startDate: Date, endDate: Date): Flowable<List<Note>> {
-//        return Maybe.timer(1, TimeUnit.SECONDS).flatMap {
-//            val cal = Calendar.getInstance();
-//            cal.add(Calendar.DAY_OF_MONTH, -1);
-//
-//            val note = Note(1,"# Test \n\n djaslkdjsalkdj \n ## Test 2 \n\n test", cal.time);
-//            val note2 = Note(2, "#testfd auopifu dasoifuaodifu aosid fuaoisdfuadsoifuodasi afdsupofasd", Date());
-//
-//            val notes = arrayListOf(note, note2)
-//            Maybe.just(notes)
-//        };
-
         return db?.notesDataDao()?.getAll()!!
+    }
+
+    override fun hasNotes(date: Date): Single<Boolean> {
+        return Single.fromCallable({
+            val startOfDay = Calendar.getInstance()
+            val cal = Calendar.getInstance()
+            cal.time = date
+            startOfDay.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH))
+            startOfDay.set(Calendar.MONTH, cal.get(Calendar.MONTH))
+            startOfDay.set(Calendar.YEAR, cal.get(Calendar.YEAR))
+            startOfDay.set(Calendar.MINUTE, 0)
+            startOfDay.set(Calendar.HOUR_OF_DAY, 0)
+
+            val startTime = startOfDay.timeInMillis
+            startOfDay.add(Calendar.DAY_OF_MONTH, 1)
+            val endTime = startOfDay.timeInMillis
+
+            db?.notesDataDao()?.notesCount(startTime, endTime).let { it!! > 0 }
+        })
     }
 
     override fun saveNote(id: Long?, text: String, date: Date): Completable {

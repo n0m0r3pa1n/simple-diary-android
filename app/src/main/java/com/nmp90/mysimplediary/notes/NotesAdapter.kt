@@ -18,8 +18,12 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
         val binding = ListItemNoteBinding.inflate(layoutInflater, parent, false)
         val viewHolder = ViewHolder(binding)
 
+        binding.containerActions.setOnClickListener({
+            openEditMode(binding)
+        })
+
         binding.tvNotePreview.setOnClickListener({
-            binding.isInEdit = true
+            openEditMode(binding)
         })
 
         binding.btnSave.setOnClickListener(View.OnClickListener {
@@ -28,6 +32,9 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
 
             val note = notesList[viewHolder.adapterPosition]
             noteClickListener.onSaveNote(note.id, binding.etNoteText.text.toString(), note.date)
+
+            binding.isInEdit = false;
+            binding.executePendingBindings()
         })
 
         binding.btnCancel.setOnClickListener(View.OnClickListener {
@@ -37,9 +44,15 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
             val note = notesList[viewHolder.adapterPosition]
             binding.etNoteText.setText(note.text)
             binding.isInEdit = false
+            binding.executePendingBindings()
         })
 
         return viewHolder
+    }
+
+    private fun openEditMode(binding: ListItemNoteBinding) {
+        binding.isInEdit = true
+        binding.executePendingBindings()
     }
 
     fun addNotes(notes: List<Note>) {
@@ -56,12 +69,12 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
     override fun getItemCount() = notesList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindNotes(notesList[position], noteClickListener)
+        holder.bindNotes(notesList[position])
     }
 
     class ViewHolder(val binding: ListItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindNotes(note: Note, noteClickListener: NoteClickListener) {
+        fun bindNotes(note: Note) {
             binding.date = note.date.toSimpleString()
             binding.isInEdit = false
 
