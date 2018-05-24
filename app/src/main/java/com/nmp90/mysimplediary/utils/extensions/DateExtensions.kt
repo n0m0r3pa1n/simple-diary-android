@@ -7,3 +7,8 @@ fun Date.toSimpleString() : String {
     val format = SimpleDateFormat("dd.MM yyyy", Locale.getDefault())
     return format.format(this)
 }
+
+fun toSimpleStringWithDate(date: Date) : String {
+    val format = SimpleDateFormat("dd.MM yyyy", Locale.getDefault())
+    return format.format(date)
+}

@@ -1,6 +1,7 @@
 package com.nmp90.mysimplediary.notes
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,14 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
 
             binding.isInEdit = false;
             binding.executePendingBindings()
+        })
+
+        binding.btnDelete.setOnClickListener(View.OnClickListener {
+            if (viewHolder.adapterPosition == RecyclerView.NO_POSITION)
+                return@OnClickListener
+
+            val note = notesList[viewHolder.adapterPosition]
+            noteClickListener.onDeleteNote(note)
         })
 
         binding.btnCancel.setOnClickListener(View.OnClickListener {
@@ -71,17 +80,19 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
     class ViewHolder(val binding: ListItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindNotes(note: Note) {
+            Log.d("AAAAAA", if (note.id != null) note.id.toString() else "empty")
+            binding.note = note
             binding.date = note.date.toSimpleString()
             binding.isInEdit = false
 
             Markwon.setMarkdown(binding.tvNotePreview, note.text)
-
-            binding.etNoteText.setText(note.text)
             binding.executePendingBindings()
         }
     }
 
     interface NoteClickListener {
+        fun onDeleteNote(note: Note)
+
         fun onSaveNote(id: Long?, text: String, date: Date)
     }
 }

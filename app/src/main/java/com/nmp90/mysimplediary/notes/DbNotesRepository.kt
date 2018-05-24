@@ -43,4 +43,11 @@ class DbNotesRepository(context: Context) : NotesRepository {
         })
     }
 
+    override fun deleteNote(note: Note): Completable {
+        return Completable.fromAction({
+            db?.notesDataDao()?.delete(note)
+        })
+    }
+
+
 }

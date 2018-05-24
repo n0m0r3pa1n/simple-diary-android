@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView.VERTICAL
 import com.nmp90.mysimplediary.add.AddNoteActivity
 import com.nmp90.mysimplediary.databinding.ActivityMainBinding
+import com.nmp90.mysimplediary.notes.Note
 import com.nmp90.mysimplediary.notes.NotesAdapter
 import com.nmp90.mysimplediary.utils.extensions.hideKeyboard
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
     private fun checkForNoteToday() {
         val disposable = diaryViewModel.hasNotesForToday()
                 .filter({ !it })
-                .flatMapCompletable { diaryViewModel.saveNote(null, "New note", Date()) }
+                .flatMapCompletable { diaryViewModel.saveNote(null, "", Date()) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
@@ -69,5 +70,13 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
         disposables.add(disposable)
 
         binding.rvDiary.hideKeyboard()
+    }
+
+    override fun onDeleteNote(note: Note) {
+        val disposable = diaryViewModel.deleteNote(note)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        disposables.add(disposable)
     }
 }

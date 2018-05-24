@@ -35,4 +35,8 @@ class DiaryViewModel : ViewModel() {
     fun saveNote(id: Long?, text: String, date: Date): Completable {
         return notesRepository.saveNote(id, text, date)
     }
+
+    fun deleteNote(note: Note): Completable {
+        return notesRepository.deleteNote(note)
+    }
 }
