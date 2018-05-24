@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".add.AddNoteActivity"
-    tools:showIn="@layout/activity_add_note">
+<layout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        tools:context=".add.AddNoteActivity"
+        tools:showIn="@layout/activity_add_note">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_date"
+            tools:text="21.05 2018"
+            android:gravity="center"
+            android:drawableEnd="@drawable/ic_date_range_black_24dp"
+            android:drawablePadding="8dp"
+            android:layout_centerHorizontal="true"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
+
+        <EditText
+            android:id="@+id/et_note_text"
+            android:inputType="textMultiLine"
+            android:layout_below="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top|start"
+            android:hint="@string/hint_add_note"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+</layout>
