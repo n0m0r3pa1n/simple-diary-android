@@ -18,10 +18,6 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
         val binding = ListItemNoteBinding.inflate(layoutInflater, parent, false)
         val viewHolder = ViewHolder(binding)
 
-        binding.containerActions.setOnClickListener({
-            openEditMode(binding)
-        })
-
         binding.tvNotePreview.setOnClickListener({
             openEditMode(binding)
         })

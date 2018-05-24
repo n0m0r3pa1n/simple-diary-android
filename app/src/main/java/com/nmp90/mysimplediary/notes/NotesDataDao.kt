@@ -9,7 +9,7 @@ import io.reactivex.Flowable
 @Dao
 interface NotesDataDao {
 
-    @Query("SELECT * from notes")
+    @Query("SELECT * from notes ORDER BY date DESC")
     fun getAll(): Flowable<List<Note>>
 
     @Query("SELECT COUNT(*) from notes WHERE date BETWEEN :start_time AND :end_time")

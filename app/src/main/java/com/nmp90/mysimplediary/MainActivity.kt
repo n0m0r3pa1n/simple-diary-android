@@ -2,11 +2,13 @@ package com.nmp90.mysimplediary
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView.VERTICAL
+import com.nmp90.mysimplediary.add.AddNoteActivity
 import com.nmp90.mysimplediary.databinding.ActivityMainBinding
 import com.nmp90.mysimplediary.notes.NotesAdapter
 import com.nmp90.mysimplediary.utils.extensions.hideKeyboard
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
         binding.rvDiary.layoutManager = LinearLayoutManager(this, VERTICAL, false)
         val notesAdapter = NotesAdapter(this)
         binding.rvDiary.adapter = notesAdapter
+        binding.fabAddNote.setOnClickListener({
+            val intent = Intent(this, AddNoteActivity::class.java)
+            startActivity(intent)
+        })
 
         diaryViewModel = ViewModelProviders.of(this).get(DiaryViewModel::class.java)
         diaryViewModel.getNotes()
