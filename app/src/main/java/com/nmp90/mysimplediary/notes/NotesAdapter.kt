@@ -1,7 +1,6 @@
 package com.nmp90.mysimplediary.notes
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,7 +79,6 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
     class ViewHolder(val binding: ListItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindNotes(note: Note) {
-            Log.d("AAAAAA", if (note.id != null) note.id.toString() else "empty")
             binding.note = note
             binding.date = note.date.toSimpleString()
             binding.isInEdit = false

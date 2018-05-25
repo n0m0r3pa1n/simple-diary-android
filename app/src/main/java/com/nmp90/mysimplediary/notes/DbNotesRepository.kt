@@ -14,7 +14,7 @@ class DbNotesRepository(context: Context) : NotesRepository {
     }
 
     override fun getNotes(startDate: Date, endDate: Date): Flowable<List<Note>> {
-        return db?.notesDataDao()?.getAll()!!
+        return db?.notesDataDao()?.getAll(startDate.time, endDate.time)!!
     }
 
     override fun hasNotes(date: Date): Single<Boolean> {
