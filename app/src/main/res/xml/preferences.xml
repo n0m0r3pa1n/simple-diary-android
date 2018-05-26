@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="pref_daily_notification"
+        android:title="@string/pref_enable_notifications"
+        android:summary="@string/pref_notification_sum"
+        android:defaultValue="false" />
+
+    <com.nmp90.mysimplediary.settings.TimePreference
+        android:key="pref_time_daily_notification"
+        android:title="@string/pref_daily_notification_time"/>
+
+</PreferenceScreen>

@@ -29,7 +29,7 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerV
             val note = notesList[viewHolder.adapterPosition]
             noteClickListener.onSaveNote(note.id, binding.etNoteText.text.toString(), note.date)
 
-            binding.isInEdit = false;
+            binding.isInEdit = false
             binding.executePendingBindings()
         })
 

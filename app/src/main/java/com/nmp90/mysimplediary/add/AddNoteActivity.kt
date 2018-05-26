@@ -32,7 +32,7 @@ class AddNoteActivity : AppCompatActivity() {
 
         binding.content?.tvDate?.text = date.toSimpleString()
         binding.content?.tvDate?.setOnClickListener({ onDatePick() })
-        binding.fabSave.setOnClickListener { view ->
+        binding.fabSave.setOnClickListener {
             val text = binding.content?.etNoteText?.text.toString()
             val disposable = viewModel.saveNote(null, text, date)
                     .subscribeOn(Schedulers.io())

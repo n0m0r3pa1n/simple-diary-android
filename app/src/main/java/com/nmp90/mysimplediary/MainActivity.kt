@@ -18,6 +18,7 @@ import com.nmp90.mysimplediary.databinding.ActivityMainBinding
 import com.nmp90.mysimplediary.notes.Note
 import com.nmp90.mysimplediary.notes.NotesAdapter
 import com.nmp90.mysimplediary.notes.PeriodFilter
+import com.nmp90.mysimplediary.settings.SettingsActivity
 import com.nmp90.mysimplediary.utils.extensions.hideKeyboard
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -83,15 +84,20 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
 
+        val settings = menu.findItem(R.id.settings)
+        settings.setOnMenuItemClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+            true
+        }
+
         val item = menu.findItem(R.id.spinner)
         val spinner = item.actionView as Spinner
 
         val adapter = ArrayAdapter.createFromResource(this,
                 R.array.filter_options, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         spinner.adapter = adapter
-
 
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
