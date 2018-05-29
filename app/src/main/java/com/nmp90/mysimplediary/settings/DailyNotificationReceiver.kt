@@ -22,7 +22,7 @@ class DailyNotificationReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
         val mBuilder = NotificationCompat.Builder(context, CHANNEL_ID)
-//                .setSmallIcon(R.drawable.notification_icon)
+                .setSmallIcon(R.drawable.ic_diary_notification)
                 .setContentTitle(context.getString(R.string.title_daily_notification))
                 .setContentText(context.getString(R.string.text_daily_notification))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
