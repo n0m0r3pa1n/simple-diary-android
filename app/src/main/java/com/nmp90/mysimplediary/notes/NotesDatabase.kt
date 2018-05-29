@@ -19,13 +19,13 @@ abstract class NotesDatabase : RoomDatabase() {
         fun getInstance(context: Context): NotesDatabase? {
             if (INSTANCE == null) {
                 synchronized(NotesDatabase::class) {
-//                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-//                            NotesDatabase::class.java, "notes.db")
-//                            .build()
-
-                    INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
-                            NotesDatabase::class.java)
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            NotesDatabase::class.java, "notes.db")
                             .build()
+
+//                    INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
+//                            NotesDatabase::class.java)
+//                            .build()
                 }
             }
             return INSTANCE
