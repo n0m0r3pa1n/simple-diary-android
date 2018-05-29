@@ -26,7 +26,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nmp90.mysimplediary.MainActivity" />
         </activity>
-        <activity android:name=".settings.SettingsActivity"></activity>
+        <activity android:name=".settings.SettingsActivity" />
+        <receiver android:name=".settings.DailyNotificationReceiver" />
     </application>
 
 </manifest>

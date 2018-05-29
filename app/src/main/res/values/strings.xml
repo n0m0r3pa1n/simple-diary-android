@@ -11,6 +11,8 @@
     <string name="pref_enable_notifications">Enable daily notification</string>
     <string name="pref_notification_sum">Enable this option if you want to have a daily notification</string>
     <string name="pref_daily_notification_time">Time to display the daily notification</string>
+    <string name="title_daily_notification">Daily diary notification</string>
+    <string name="text_daily_notification">Remember to enter the summary for your day!</string>
 
     <string-array name="filter_options">
         <item>This week</item>
