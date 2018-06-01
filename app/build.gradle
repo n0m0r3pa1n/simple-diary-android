@@ -29,6 +29,24 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        PlayStore {
+            dimension "default"
+
+            applicationId "com.nmp90.mysimplediary"
+            resValue "string", "app_name", "My Simple Diary"
+        }
+
+        Test {
+            dimension "default"
+
+            applicationId "com.nmp90.mysimplediary.test"
+            resValue "string", "app_name", "My Simple Diary Test"
+        }
+    }
 }
 
 dependencies {

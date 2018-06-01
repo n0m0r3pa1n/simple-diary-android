@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">My Simple Diary</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_add_note">AddNoteActivity</string>
