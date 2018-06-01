@@ -13,6 +13,8 @@
     <string name="pref_daily_notification_time">Time to display the daily notification</string>
     <string name="title_daily_notification">Daily diary notification</string>
     <string name="text_daily_notification">Remember to enter the summary for your day!</string>
+    <string name="notification_channel_name">My Simple Diary</string>
+    <string name="notification_channel_description">Daily notification channel for My Simple Diary</string>
 
     <string-array name="filter_options">
         <item>This week</item>

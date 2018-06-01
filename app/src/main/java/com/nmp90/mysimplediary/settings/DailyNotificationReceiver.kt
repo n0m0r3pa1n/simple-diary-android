@@ -14,7 +14,9 @@ import com.nmp90.mysimplediary.R
 
 class DailyNotificationReceiver : BroadcastReceiver() {
 
-    private val CHANNEL_ID: String = "com.nmp90.mysimplediary.DAILY_NOTIFICATION"
+    companion object {
+        val CHANNEL_ID: String = "com.nmp90.mysimplediary.DAILY_NOTIFICATION"
+    }
 
     override fun onReceive(context: Context, p1: Intent?) {
         val intent = Intent(context, MainActivity::class.java)
