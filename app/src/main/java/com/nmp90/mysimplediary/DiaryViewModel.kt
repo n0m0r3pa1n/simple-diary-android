@@ -1,16 +1,14 @@
 package com.nmp90.mysimplediary
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.LiveDataReactiveStreams
 import android.arch.lifecycle.ViewModel
+import android.arch.paging.PagedList
 import com.nmp90.mysimplediary.notes.DbNotesRepository
 import com.nmp90.mysimplediary.notes.Note
 import com.nmp90.mysimplediary.notes.NotesRepository
 import com.nmp90.mysimplediary.notes.PeriodFilter
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 
@@ -22,15 +20,11 @@ class DiaryViewModel : ViewModel() {
         notesRepository = DbNotesRepository(MySimpleDiaryApp.instance)
     }
 
-    fun getNotes(period: PeriodFilter): LiveData<List<Note>> {
+    fun getNotes(period: PeriodFilter): LiveData<PagedList<Note>> {
         val startDate = getStartDateForPeriod(period)
         val endDate = getEndDateForPeriod(period)
 
-        val notes = notesRepository.getNotes(startDate, endDate)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-
-        return LiveDataReactiveStreams.fromPublisher(notes)
+        return notesRepository.getNotes(startDate, endDate)
     }
 
     fun hasNotesForToday() : Single<Boolean> {

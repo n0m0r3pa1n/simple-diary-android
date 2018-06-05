@@ -1,5 +1,7 @@
 package com.nmp90.mysimplediary.notes
 
+import android.arch.paging.PagedListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +11,19 @@ import com.nmp90.mysimplediary.utils.extensions.toSimpleString
 import ru.noties.markwon.Markwon
 import java.util.*
 
-class NotesAdapter(private val noteClickListener: NoteClickListener) : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
+class NotesAdapter(private val noteClickListener: NoteClickListener) : PagedListAdapter<Note, NotesAdapter.ViewHolder>(diffCallback) {
 
     private val notesList: MutableList<Note> = mutableListOf()
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Note>() {
+            override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean =
+                    oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean =
+                    oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

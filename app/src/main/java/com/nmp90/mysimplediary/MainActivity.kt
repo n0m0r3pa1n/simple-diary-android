@@ -2,6 +2,7 @@ package com.nmp90.mysimplediary
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
     private lateinit var notesAdapter: NotesAdapter
     private lateinit var diaryViewModel: DiaryViewModel
 
-    val notesListObserver = Observer<List<Note>> {
+    val notesListObserver = Observer<PagedList<Note>> {
         notesAdapter.setNotes(it!!)
     }
 

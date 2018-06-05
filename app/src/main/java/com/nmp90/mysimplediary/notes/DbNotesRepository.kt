@@ -1,8 +1,10 @@
 package com.nmp90.mysimplediary.notes
 
+import android.arch.lifecycle.LiveData
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
 import android.content.Context
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Single
 import java.util.*
 
@@ -13,8 +15,18 @@ class DbNotesRepository(context: Context) : NotesRepository {
         db = NotesDatabase.getInstance(context)
     }
 
-    override fun getNotes(startDate: Date, endDate: Date): Flowable<List<Note>> {
-        return db?.notesDataDao()?.getAll(startDate.time, endDate.time)!!
+    companion object {
+        private const val PAGE_SIZE = 30
+        private const val ENABLE_PLACEHOLDERS = true
+    }
+
+    override fun getNotes(startDate: Date, endDate: Date): LiveData<PagedList<Note>> {
+        return LivePagedListBuilder(db?.notesDataDao()?.getAll(startDate.time, endDate.time)!!,
+                PagedList.Config.Builder()
+                    .setPageSize(PAGE_SIZE)
+                    .setEnablePlaceholders(ENABLE_PLACEHOLDERS)
+                    .build()
+        ).build()
     }
 
     override fun hasNotes(date: Date): Single<Boolean> {
