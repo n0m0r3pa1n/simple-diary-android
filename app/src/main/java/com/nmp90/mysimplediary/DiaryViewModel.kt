@@ -51,10 +51,14 @@ class DiaryViewModel : ViewModel() {
         calendar.set(Calendar.HOUR_OF_DAY, 0)
 
         when (period) {
-            PeriodFilter.WEEK ->
+            PeriodFilter.WEEK -> {
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            PeriodFilter.MONTH ->
-                calendar.set(Calendar.DAY_OF_MONTH,  1)
+                calendar.add(Calendar.DAY_OF_WEEK, -1)
+            }
+            PeriodFilter.MONTH -> {
+                calendar.set(Calendar.DAY_OF_MONTH, 1)
+                calendar.add(Calendar.DAY_OF_MONTH, -1)
+            }
             PeriodFilter.ALL_TIME -> {
                 calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - YEARS_COUNT_FOR_NOTES)
             }
