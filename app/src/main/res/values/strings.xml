@@ -1,7 +1,7 @@
 <resources>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="title_activity_add_note">AddNoteActivity</string>
+    <string name="title_activity_add_note">Add a note</string>
     <string name="hint_add_note">Your new note here in Markdown</string>
     <string name="add_note_empty_date">Please select a date for the note!</string>
     <string name="filter_notes">Filter notes</string>
