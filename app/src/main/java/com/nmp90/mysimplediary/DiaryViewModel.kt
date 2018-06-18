@@ -46,11 +46,7 @@ class DiaryViewModel : ViewModel() {
 
         when (period) {
             PeriodFilter.WEEK -> {
-                val weekday = calendar.get(Calendar.DAY_OF_WEEK)
-                if (weekday != Calendar.MONDAY) {
-                    val days = (Calendar.SATURDAY - weekday) + 1
-                    calendar.add(Calendar.DAY_OF_YEAR, -days)
-                }
+                calendar.set(Calendar.DAY_OF_WEEK, 1)
             }
             PeriodFilter.MONTH -> {
                 calendar.set(Calendar.DAY_OF_MONTH, 1)
