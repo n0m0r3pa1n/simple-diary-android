@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView.VERTICAL
 import android.view.Menu
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.rvDiary.layoutManager = LinearLayoutManager(this, VERTICAL, false)
