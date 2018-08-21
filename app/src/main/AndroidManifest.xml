@@ -28,6 +28,11 @@
         </activity>
         <activity android:name=".settings.SettingsActivity" />
         <receiver android:name=".settings.DailyNotificationReceiver" />
+        <receiver android:name=".AppStartBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
