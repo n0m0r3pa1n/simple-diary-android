@@ -3,7 +3,7 @@ package com.nmp90.mysimplediary.add
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import java.util.*
 
 
@@ -23,7 +23,7 @@ class DatePickerDialogFragment : DialogFragment() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         // Create a new instance of DatePickerDialog and return it
-        return DatePickerDialog(activity, listener, year, month, day)
+        return DatePickerDialog(activity!!, listener, year, month, day)
     }
 
     companion object {

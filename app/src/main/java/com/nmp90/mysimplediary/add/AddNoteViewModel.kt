@@ -1,6 +1,6 @@
 package com.nmp90.mysimplediary.add
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.nmp90.mysimplediary.MySimpleDiaryApp
 import com.nmp90.mysimplediary.notes.DbNotesRepository
 import com.nmp90.mysimplediary.notes.NotesRepository

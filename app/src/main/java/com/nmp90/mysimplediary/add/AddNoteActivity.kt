@@ -1,10 +1,10 @@
 package com.nmp90.mysimplediary.add
 
 import android.app.DatePickerDialog
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.nmp90.mysimplediary.R
 import com.nmp90.mysimplediary.databinding.ActivityAddNoteBinding
 import com.nmp90.mysimplediary.utils.extensions.toSimpleString
@@ -30,16 +30,16 @@ class AddNoteActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
 
-        binding.content?.tvDate?.text = date.toSimpleString()
-        binding.content?.tvDate?.setOnClickListener({ onDatePick() })
+        binding.content.tvDate.text = date.toSimpleString()
+        binding.content.tvDate.setOnClickListener({ onDatePick() })
         binding.fabSave.setOnClickListener {
-            val text = binding.content?.etNoteText?.text.toString()
+            val text = binding.content.etNoteText.text.toString()
             val disposable = viewModel.saveNote(null, text, date)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
+                    .subscribe {
                         finish()
-                    })
+                    }
             disposables.add(disposable)
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -55,7 +55,7 @@ class AddNoteActivity : AppCompatActivity() {
         val dialogFragment = DatePickerDialogFragment()
         dialogFragment.setListener(DatePickerDialog.OnDateSetListener { datePicker, i, i1, i2 ->
             date = GregorianCalendar(i, i1, i2).time
-            binding.content?.tvDate?.text = date.toSimpleString()
+            binding.content.tvDate.text = date.toSimpleString()
         })
 
         dialogFragment.show(supportFragmentManager, DatePickerDialogFragment.TAG)

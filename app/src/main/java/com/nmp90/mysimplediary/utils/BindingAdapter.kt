@@ -1,7 +1,7 @@
 package com.nmp90.mysimplediary.utils
 
-import android.databinding.BindingAdapter
 import android.view.View
+import androidx.databinding.BindingAdapter
 
 
 @BindingAdapter("android:visibility")

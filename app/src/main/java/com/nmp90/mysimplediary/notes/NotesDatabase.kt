@@ -1,13 +1,13 @@
 package com.nmp90.mysimplediary.notes
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.nmp90.mysimplediary.utils.db.DateConverter
 
-@Database(entities = arrayOf(Note::class), version = 1)
+@Database(entities = [Note::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class NotesDatabase : RoomDatabase() {
 
@@ -19,7 +19,7 @@ abstract class NotesDatabase : RoomDatabase() {
         fun getInstance(context: Context): NotesDatabase? {
             if (INSTANCE == null) {
                 synchronized(NotesDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
                             NotesDatabase::class.java, "notes.db")
                             .build()
 

@@ -1,19 +1,15 @@
 package com.nmp90.mysimplediary.notes
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.LivePagedListBuilder
-import android.arch.paging.PagedList
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import io.reactivex.Completable
 import io.reactivex.Single
 import java.util.*
 
 class DbNotesRepository(context: Context) : NotesRepository {
-    val db: NotesDatabase?
-
-    init {
-        db = NotesDatabase.getInstance(context)
-    }
+    private val db: NotesDatabase? = NotesDatabase.getInstance(context)
 
     companion object {
         private const val PAGE_SIZE = 30
@@ -30,7 +26,7 @@ class DbNotesRepository(context: Context) : NotesRepository {
     }
 
     override fun hasNotes(date: Date): Single<Boolean> {
-        return Single.fromCallable({
+        return Single.fromCallable {
             val startOfDay = Calendar.getInstance()
             val cal = Calendar.getInstance()
             cal.time = date
@@ -45,7 +41,7 @@ class DbNotesRepository(context: Context) : NotesRepository {
             val endTime = startOfDay.timeInMillis
 
             db?.notesDataDao()?.notesCount(startTime, endTime).let { it!! > 0 }
-        })
+        }
     }
 
     override fun saveNote(id: Long?, text: String, date: Date): Completable {

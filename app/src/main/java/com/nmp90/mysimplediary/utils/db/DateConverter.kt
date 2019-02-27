@@ -1,6 +1,6 @@
 package com.nmp90.mysimplediary.utils.db
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import java.util.*
 
 class DateConverter {

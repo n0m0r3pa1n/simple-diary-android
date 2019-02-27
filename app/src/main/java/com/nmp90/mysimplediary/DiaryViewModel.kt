@@ -1,8 +1,8 @@
 package com.nmp90.mysimplediary
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.nmp90.mysimplediary.notes.DbNotesRepository
 import com.nmp90.mysimplediary.notes.Note
 import com.nmp90.mysimplediary.notes.NotesRepository
@@ -13,8 +13,8 @@ import java.util.*
 
 
 class DiaryViewModel : ViewModel() {
-    val notesRepository: NotesRepository;
-    val YEARS_COUNT_FOR_NOTES = 10
+    private val notesRepository: NotesRepository;
+    private val YEARS_COUNT_FOR_NOTES = 10
 
     init {
         notesRepository = DbNotesRepository(MySimpleDiaryApp.instance)

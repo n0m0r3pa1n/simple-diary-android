@@ -10,7 +10,7 @@ import com.nmp90.mysimplediary.R
 
 class SettingsActivity : PreferenceActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    val PREF_ENABLE_NOTIFICATIONS = "pref_daily_notification"
+    private val PREF_ENABLE_NOTIFICATIONS = "pref_daily_notification"
 
     private lateinit var dailyNotificationController: DailyNotificationController
 

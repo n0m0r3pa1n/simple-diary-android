@@ -1,20 +1,20 @@
 package com.nmp90.mysimplediary
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.arch.paging.PagedList
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView.VERTICAL
 import android.view.Menu
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nmp90.mysimplediary.add.AddNoteActivity
 import com.nmp90.mysimplediary.databinding.ActivityMainBinding
 import com.nmp90.mysimplediary.notes.Note
@@ -30,7 +30,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
 
-    val SYSTEM_TRIGGERED_SELECT_COUNT = 1;
+    private val SYSTEM_TRIGGERED_SELECT_COUNT = 1;
 
     lateinit var binding: ActivityMainBinding
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NoteClickListener {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.rvDiary.layoutManager = LinearLayoutManager(this, VERTICAL, false)
+        binding.rvDiary.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         notesAdapter = NotesAdapter(this)
         binding.rvDiary.adapter = notesAdapter
         binding.fabAddNote.setOnClickListener({

@@ -6,7 +6,7 @@
         <variable name="note" type="com.nmp90.mysimplediary.notes.Note" />
         <variable name="isInEdit" type="boolean"/>
     </data>
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -84,5 +84,5 @@
                     android:visibility="@{isInEdit}"/>
             </LinearLayout>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </layout>

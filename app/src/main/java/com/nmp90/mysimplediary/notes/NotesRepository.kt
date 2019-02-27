@@ -1,7 +1,7 @@
 package com.nmp90.mysimplediary.notes
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 import io.reactivex.Completable
 import io.reactivex.Single
 import java.util.*

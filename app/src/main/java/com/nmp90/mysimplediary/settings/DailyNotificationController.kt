@@ -9,8 +9,8 @@ import java.util.*
 
 class DailyNotificationController(context: Context) {
 
-    val PREF_ENABLE_NOTIFICATIONS = "pref_daily_notification"
-    val PREF_DAILY_NOTIFICATION_TIME = "pref_time_daily_notification"
+    private val PREF_ENABLE_NOTIFICATIONS = "pref_daily_notification"
+    private val PREF_DAILY_NOTIFICATION_TIME = "pref_time_daily_notification"
 
     private var alarmMgr: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private var pendingDailyIntent: PendingIntent

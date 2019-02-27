@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"/>
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_note_text"
             android:inputType="textMultiLine"
             android:layout_below="@+id/tv_date"

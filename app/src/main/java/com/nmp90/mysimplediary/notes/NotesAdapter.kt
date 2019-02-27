@@ -1,11 +1,11 @@
 package com.nmp90.mysimplediary.notes
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.nmp90.mysimplediary.databinding.ListItemNoteBinding
 import com.nmp90.mysimplediary.utils.extensions.toSimpleString
 import ru.noties.markwon.Markwon
@@ -30,9 +30,9 @@ class NotesAdapter(private val noteClickListener: NoteClickListener) : PagedList
         val binding = ListItemNoteBinding.inflate(layoutInflater, parent, false)
         val viewHolder = ViewHolder(binding)
 
-        binding.tvNotePreview.setOnClickListener({
+        binding.tvNotePreview.setOnClickListener {
             openEditMode(binding)
-        })
+        }
 
         binding.btnSave.setOnClickListener(View.OnClickListener {
             if (viewHolder.adapterPosition == RecyclerView.NO_POSITION)
