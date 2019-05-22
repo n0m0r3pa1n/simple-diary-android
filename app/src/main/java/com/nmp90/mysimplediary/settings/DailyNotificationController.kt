@@ -18,7 +18,7 @@ class DailyNotificationController(context: Context) {
 
     init {
         val dailyNotificationReceiverIntent = Intent(context, DailyNotificationReceiver::class.java)
-        pendingDailyIntent = PendingIntent.getBroadcast(context, 0, dailyNotificationReceiverIntent, 0)
+        pendingDailyIntent = PendingIntent.getBroadcast(context, 0, dailyNotificationReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
 

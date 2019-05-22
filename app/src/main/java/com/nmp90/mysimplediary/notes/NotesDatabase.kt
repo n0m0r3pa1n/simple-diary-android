@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.nmp90.mysimplediary.BuildConfig
 import com.nmp90.mysimplediary.utils.db.DateConverter
 
 @Database(entities = [Note::class], version = 1)
@@ -19,13 +20,15 @@ abstract class NotesDatabase : RoomDatabase() {
         fun getInstance(context: Context): NotesDatabase? {
             if (INSTANCE == null) {
                 synchronized(NotesDatabase::class) {
-//                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-//                            NotesDatabase::class.java, "notes.db")
-//                            .build()
-
-                    INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
+                    if (BuildConfig.DEBUG) {
+                        INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
                             NotesDatabase::class.java)
                             .build()
+                    } else {
+                        INSTANCE = Room.databaseBuilder(context.applicationContext,
+                                NotesDatabase::class.java, "notes.db")
+                                .build()
+                    }
                 }
             }
             return INSTANCE

@@ -45,12 +45,7 @@ class SettingsActivity : PreferenceActivity(), SharedPreferences.OnSharedPrefere
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        if (key == PREF_ENABLE_NOTIFICATIONS) {
-            dailyNotificationController.setupNotifications(sharedPreferences)
-        } else {
-            dailyNotificationController.disableNotifications();
-            dailyNotificationController.enableNotifications(sharedPreferences)
-        }
+        dailyNotificationController.setupNotifications(sharedPreferences)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
