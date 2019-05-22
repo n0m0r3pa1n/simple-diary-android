@@ -26,7 +26,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nmp90.mysimplediary.MainActivity" />
         </activity>
-        <activity android:name=".settings.SettingsActivity" />
+        <activity
+            android:label="@string/menu_settings"
+            android:name=".settings.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <receiver android:name=".settings.DailyNotificationReceiver" />
         <receiver android:name=".AppStartBroadcastReceiver">
             <intent-filter>
